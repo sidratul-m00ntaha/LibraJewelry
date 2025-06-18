@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth import views as auth_view
 from .forms import LoginForm, MyPasswordResetForm, MypasswordChangeForm, mySetPasswordForm
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     # Main pages
@@ -23,7 +24,13 @@ urlpatterns = [
 
     # Cart
     path("add-to-cart/", views.add_to_cart, name="add-to-cart"),
-    path("cart/", views.show_cart, name="showcart"),
+    path("cart/", views.show_cart, name="addtocart"),
+    path("checkout/", views.checkout.as_view(), name="checkout"),
+    path('search/', views.search, name='search'),
+
+    path("pluscart/", views.plus_cart),
+    path("minuscart/", views.minus_cart),
+    path("removecart/", views.remove_cart),
 
     # User authentication
     path("registration/", views.CustomerRegistrationView.as_view(), name="customerregistration"),
@@ -42,8 +49,7 @@ urlpatterns = [
         template_name="app/passwordchangedone.html"
     ), name="passwordchangedone"),
 
-    path("logout", auth_view.LoginView.as_view(next_page="login"), name="logout"),
-
+    path("logout/", LogoutView.as_view(next_page="login"), name="logout"),
     # Password reset
     path("password-reset/", auth_view.PasswordResetView.as_view(
         template_name="app/password_reset.html",
