@@ -12,26 +12,36 @@
     <link rel="stylesheet" href="{% static 'app/css/all.min.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
 
-    <title>{% block title %}Products{% endblock title %}</title> <!-- Cleaned double <title> -->
+    <style>
+      .theme-bg {
+        background-color: #ffddab !important;
+      }
+      .theme-text {
+        color: #6c4f3d !important;
+      }
+    </style>
+
+    <title>{% block title %}Products{% endblock title %}</title>
 </head>
 <body>
 
 <!-- Display messages -->
-  <div class="container mt-3">
-    {% if messages %}
-      {% for message in messages %}
-        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-          {{ message }}
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      {% endfor %}
-    {% endif %}
-  </div>
+<div class="container mt-3">
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+</div>
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+<!-- Navbar with custom theme -->
+<nav class="navbar navbar-expand-lg navbar-dark theme-bg">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">
-        <img src="{% static 'app/images/neel.png' %}" width="70" height="50" alt="Logo"/>
+      <img src="{% static 'app/images/neel.png' %}" width="70" height="50" alt="Logo"/>
     </a>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
@@ -42,13 +52,13 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         {% if request.user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link active" href="/">Home</a>
+          <a class="nav-link active theme-text" href="/">Home</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Products</a>
+          <a class="nav-link dropdown-toggle theme-text" href="#" data-bs-toggle="dropdown">Products</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{% url 'category' 'ML' %}">Ring</a></li>
-            <li><a class="dropdown-item" href="{% url 'category' 'CR' %}">Nose pin</a></li> <!-- Fixed unclosed tag -->
+            <li><a class="dropdown-item" href="{% url 'category' 'CR' %}">Nose pin</a></li>
             <li><a class="dropdown-item" href="{% url 'category' 'MS' %}">Silver Ring</a></li>
             <li><a class="dropdown-item" href="{% url 'category' 'LS' %}">Chain</a></li>
             <li><a class="dropdown-item" href="{% url 'category' 'GH' %}">Gold Chain</a></li>
@@ -58,21 +68,21 @@
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="{% url 'about' %}">About Us</a>
+          <a class="nav-link theme-text" href="{% url 'about' %}">About Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="{% url 'contact' %}">Contact Us</a>
+          <a class="nav-link theme-text" href="{% url 'contact' %}">Contact Us</a>
         </li>
       </ul>
 
       <form class="d-flex" role="search" action="/search">
         <input class="form-control me-2" type="search" placeholder="Search" name="search" aria-label="Search">
-        <button class="btn btn-outline-light" type="submit">Search</button>
+        <button class="btn btn-outline-dark" type="submit">Search</button>
       </form>
 
       <ul class="navbar-nav ms-3">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle text-white" href="#" id="profileDropdown" data-bs-toggle="dropdown">Team</a>
+          <a class="nav-link dropdown-toggle theme-text" href="#" id="profileDropdown" data-bs-toggle="dropdown">Team</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
             <li><a class="dropdown-item" href="#">Orders</a></li>
@@ -80,18 +90,15 @@
             <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
           </ul>
         </li>
-        {% comment %} <li class="nav-item mx-2">
-          <a class="nav-link text-white" href="{% url 'showcart' %}"><span class="badge bg-danger">{% if totalitem > 0 %}{{ totalitem }}{% endif %}Cart</span></a>
-        </li> {% endcomment %}
         <li class="nav-item">
-          <a class="nav-link text-white" href="#">Wishlist 4</a>
+          <a class="nav-link theme-text" href="#">Wishlist 4</a>
         </li>
         {% else %}
         <li class="nav-item">
-          <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
+          <a class="nav-link theme-text" href="{% url 'login' %}">Login</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-white" href="{% url 'customerregistration' %}">Register</a>
+          <a class="nav-link theme-text" href="{% url 'customerregistration' %}">Register</a>
         </li>
         {% endif %}
       </ul>
@@ -99,14 +106,13 @@
   </div>
 </nav>
 
-<!-- Blocks for page content -->
+<!-- Page blocks -->
 {% block banner-slider %}{% endblock banner-slider %}
 {% block information %}{% endblock information %}
 {% block main-content %}{% endblock main-content %}
-{% comment %} {% block payment-gateway %}{% endblock payment-gateway %} {% endcomment %}
 
-
-<footer class="container-fluid bg-success text-white text-center p-2 mt-5">
+<!-- Footer -->
+<footer class="container-fluid theme-bg text-dark text-center p-2 mt-5">
   &copy; 2025 | Developed by Team Ecomdev
 </footer>
 
