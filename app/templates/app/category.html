@@ -1,0 +1,78 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Category{% endblock title%}
+
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="list-group">
+                {% for val in title %}
+                <a href="{% url 'category-title' val.title %}" class="list-group-item list-group-item-action" aria-current="true">{{ val.title }}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="row">
+                {% for prod in product %}
+                <div class="col text-center mb-4">
+                    <a href="{% url 'product-detail' prod.id %}" class="btn">
+                        <div>
+                            <img src="{{prod.product_image.url}}" width="300px" height="200px"/>
+                            <div class="fw-bold">{{prod.title}}</div>
+                            <div class="fw-bold text-danger">
+                                $ {{ prod.discounted_price }}
+                                <small class="fw-light text-decoration-line-through">{{ prod.selling_price }}</small>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+.list-group-item {
+    background-color: #fff;
+    border: none;
+    border-left: 5px solid transparent;
+    transition: all 0.3s ease-in-out;
+}
+.list-group-item:hover,
+.list-group-item:focus {
+    background-color: #e9ecef;
+    border-left: 5px solid #007bff;
+    color: #007bff;
+    font-weight: 500;
+}
+.col.text-center.mb-4 {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.col.text-center.mb-4:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+img {
+    border-radius: 6px;
+    object-fit: cover;
+}
+.text-danger {
+    font-size: 1.2rem;
+}
+.fw-light.text-decoration-line-through {
+    font-size: 0.9rem;
+    color: #888;
+}
+</style>
+{% endblock main-content %}

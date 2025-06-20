@@ -1,0 +1,104 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block banner-slider %}
+<div class="container my-5">
+  <div class="row align-items-center">
+    <!-- Left Side: Text Content -->
+    <div class="col-md-6 text-left">
+      <h1 class="display-4 fw-bold" style="font-family: 'Georgia', serif;">Welcome to Libra Jewelry</h1>
+      <p class="lead" style="font-size: 1.2rem;">
+        Discover timeless beauty with our handcrafted jewelry. Embrace elegance with every piece.
+      </p>
+      <a href="{% url 'category' 'all' %}" class="btn px-4 py-2 mt-3" style="background-color: #ffddab; color: #000; border: none;">
+        Explore Collection
+      </a>
+    </div>
+
+    <!-- Right Side: Image with transparent background -->
+    <div class="col-md-6 text-center">
+      <img src="{% static 'app/images/banner/b5.png' %}" class="img-fluid" alt="Jewelry Image" style="max-height: 400px;">
+    </div>
+  </div>
+</div>
+{% endblock banner-slider %}
+
+{% block information %}
+<div class="container">
+  <div class="row text-center p-5 text-dark border-bottom shadow" style="background-color: #ffddab;">
+    <h2 class="text-center">Products</h2>
+    <small class="fs-5">
+      Libra is embracing digital transformation to meet evolving consumer expectations. A
+      dedicated online platform offers jewelry businesses the opportunity to expand their
+      reach, enhance customer convenience, and streamline operations.
+    </small>
+  </div>
+</div>
+{% endblock information %}
+
+{% block main-content %}
+<div class="container">
+  <h2 class="text-center">Products</h2>
+  <br><br>
+
+  <div class="row container">
+    <div class="col-md-4 col-sm-4 mb-4">
+      <div class="goodnesssec text-center" style="background-color: #ffddab; padding: 20px; border-radius: 10px;">
+        <a href="{% url 'category' 'NE' %}">
+          <img src="{% static 'app/images/product/necklace.jpeg' %}" class="img-fluid" alt="">
+          <p class="mt-2 fw-bold">Necklace</p>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-sm-4 mb-4">
+      <div class="goodnesssec text-center" style="background-color: #ffddab; padding: 20px; border-radius: 10px;">
+        <a href="{% url 'category' 'RI' %}">
+          <img src="{% static 'app/images/product/ring.jpeg' %}" class="img-fluid" alt="">
+          <p class="mt-2 fw-bold">Ring</p>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-sm-4 mb-4">
+      <div class="goodnesssec text-center" style="background-color: #ffddab; padding: 20px; border-radius: 10px;">
+        <a href="{% url 'category' 'WA' %}">
+          <img src="{% static 'app/images/product/watch.jpeg' %}" class="img-fluid" alt="">
+          <p class="mt-2 fw-bold">Watch</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row container">
+    <div class="col-md-4 col-sm-4 mb-4">
+      <div class="goodnesssec text-center" style="background-color: #ffddab; padding: 20px; border-radius: 10px;">
+        <a href="{% url 'category' 'BR' %}">
+          <img src="{% static 'app/images/product/bracelate.jpeg' %}" class="img-fluid" alt="">
+          <p class="mt-2 fw-bold">Bracelate</p>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-sm-4 mb-4">
+      <div class="goodnesssec text-center" style="background-color: #ffddab; padding: 20px; border-radius: 10px;">
+        <a href="{% url 'category' 'LO' %}">
+          <img src="{% static 'app/images/product/locket.jpeg' %}" class="img-fluid" alt="">
+          <p class="mt-2 fw-bold">Locket</p>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-4 col-sm-4 mb-4">
+      <div class="goodnesssec text-center" style="background-color: #ffddab; padding: 20px; border-radius: 10px;">
+        <a href="{% url 'category' 'EA' %}">
+          <img src="{% static 'app/images/product/earings.jpeg' %}" class="img-fluid" alt="">
+          <p class="mt-2 fw-bold">Earings</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br/>
+{% endblock main-content %}
