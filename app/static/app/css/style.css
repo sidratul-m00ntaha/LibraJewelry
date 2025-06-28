@@ -88,3 +88,12 @@
 } */
 
 
+form .form-control:focus {
+  border-color: #ffddab;
+  box-shadow: 0 0 0 0.2rem rgba(255, 221, 171, 0.4);
+}
+
+.navbar-brand {
+  font-family: 'Georgia', serif;
+  text-transform: uppercase;
+}

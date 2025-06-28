@@ -1,3 +1,5 @@
+
+{% extends 'app/base.html' %}
 {% comment %} {% extends 'app/base.html' %}
 {% load static %}
 
@@ -43,7 +45,7 @@
 
 
 
-{% extends 'app/base.html' %}
+
 {% load static %}
 
 {% block title %}Category{% endblock title %}
@@ -77,7 +79,7 @@
           <input type="hidden" name="prod_id" value="{{ product.id }}" />
           <button type="submit" class="btn btn-primary shadow px-5 py-2"> Add to Cart </button>
         </form>
-          <a href="{% url 'showcart'%}" class="btn btn-warning shadow px-5 py-2 ms-4">Buy Now</a>
+          <a href="{% url 'addtocart' %}" class="btn btn-warning shadow px-5 py-2 ms-4">Buy Now</a>
         </div>
       
     </div>

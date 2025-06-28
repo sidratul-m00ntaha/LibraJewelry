@@ -6,6 +6,10 @@ from django.contrib.auth import views as auth_view
 from .forms import LoginForm, MyPasswordResetForm, MypasswordChangeForm, mySetPasswordForm
 from django.contrib.auth.views import LogoutView
 
+class CustomLogoutView(LogoutView):
+    def get(self, request, *args, **kwargs):
+        return self.post(request, *args, **kwargs)
+
 urlpatterns = [
     # Main pages
     path("", views.home),
@@ -34,22 +38,23 @@ urlpatterns = [
 
     # User authentication
     path("registration/", views.CustomerRegistrationView.as_view(), name="customerregistration"),
-    path("accounts/login", auth_view.LoginView.as_view(
+    path("accounts/login/", auth_view.LoginView.as_view(
         template_name="app/login.html",
         authentication_form=LoginForm
     ), name="login"),
 
     path("passwordchange/", auth_view.PasswordChangeView.as_view(
         template_name="app/changepassword.html",
-        form_class=MypasswordChangeForm,
-        success_url="/passwordchangedone"
+        form_class=MypasswordChangeForm
     ), name="passwordchange"),
 
     path("passwordchangedone/", auth_view.PasswordChangeDoneView.as_view(
         template_name="app/passwordchangedone.html"
     ), name="passwordchangedone"),
 
-    path("logout/", LogoutView.as_view(next_page="login"), name="logout"),
+    path("logout/", CustomLogoutView.as_view(next_page="login"), name="logout"),
+
+
     # Password reset
     path("password-reset/", auth_view.PasswordResetView.as_view(
         template_name="app/password_reset.html",

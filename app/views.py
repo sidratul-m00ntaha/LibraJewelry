@@ -331,3 +331,5 @@ def search(request):
         totalitem = len(Cart.objects.filter(user=request.user))
     product = Product.objects.filter(title__icontains=query)
     return render(request, 'app/search.html', locals())
+
+

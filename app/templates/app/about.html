@@ -1,59 +1,46 @@
 {% extends 'app/base.html' %}
 {% load static %}
-{% block title %}About{%endblock title%}
+{% block title %}About{% endblock title %}
 
 {% block banner-slider %}
-
-<div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="% static 'app/images/banner/b1.jpg' %" class="d-block w-100" alt="banner image">
-    </div>
-    <div class="carousel-item">
-      <img src="% static 'app/images/banner/b2.jpg' %" class="d-block w-100" alt="banner image">
-    </div>
-    <div class="carousel-item ">
-      <img src="% static 'app/images/banner/b3.jpg' %" class="d-block w-100" alt="banner image">
-    </div>
-    <div class="carousel-item">
-      <img src="% static 'app/images/banner/b4.jpg' %" class="d-block w-100" alt="banner image">
-   
-   
-    </div>
-  </div>
+<div class="py-5 text-center theme-bg">
+  <h1 class="display-4 fw-bold theme-text">Welcome to Libra Jewelry</h1>
+  <p class="fs-5 text-dark mt-3">Timeless elegance, crafted with care in the USA</p>
 </div>
 {% endblock banner-slider %}
 
 {% block main-content %}
-<div classs="container mt-3">
-    <br>
-    <h2 class="text-center">About Us</h2>
-    <br>
+<div class="container my-5 text-center">
+  <h2 class="fw-bold theme-text mb-4">About Us</h2>
+  <p class="fs-5 mb-4" style="line-height:1.8;">
+    Founded in New York City, Libra Jewelry has redefined elegance since 2015 by blending masterful craftsmanship with modern artistry. We design with purpose—to celebrate life’s moments, big and small, through sustainable, high-quality jewelry.
+  </p>
 
-    <div class="row container">
-       <p class="fs-4 text-center"> This is a public limited company having its 
-        registered and corporate office at
-        Pune city of Maharahstra state in India. The Company Was incorporated in
-        the year
-        2018 and production commenced in 2020.
-        This is one of the fastest growing public listed companies in pune.
-       </p>
-     </div>
-
-      <br><br>
-      <h2 class="text-center">Mission</h2>
-      <br>
-     <div class="row container">
-
-        <p class="fs-4 text-center"> To embrace the right technology to delight our
-            Customers
-            Empowering the farmer community through our unique 'Relationship Farming'
-            Model
-            To anticipate,understand and respond to our Customers' needs by creating 
-            high-quality products and making them available through innovative and 
-            convenient channels
-        </p>
+  <div class="row text-center py-4">
+    <div class="col-md-4 mb-4">
+      <i class="fas fa-gem fa-3x mb-3 theme-text"></i>
+      <h5 class="theme-text">Craftsmanship</h5>
+      <p class="text-muted">Each piece is designed with precision and passion.</p>
     </div>
+    <div class="col-md-4 mb-4">
+      <i class="fas fa-leaf fa-3x mb-3 theme-text"></i>
+      <h5 class="theme-text">Sustainability</h5>
+      <p class="text-muted">Ethically sourced materials and eco-conscious production.</p>
+    </div>
+    <div class="col-md-4 mb-4">
+      <i class="fas fa-heart fa-3x mb-3 theme-text"></i>
+      <h5 class="theme-text">Customer Love</h5>
+      <p class="text-muted">We design jewelry that tells your story beautifully.</p>
+    </div>
+  </div>
+
+  <hr class="my-5" style="border-top: 2px dashed #6c4f3d;">
+
+  <h2 class="fw-bold theme-text mb-3">Our Mission</h2>
+  <p class="fs-5" style="line-height:1.8;">
+    To bring joy and sparkle to every moment through thoughtfully designed jewelry.<br>
+    To champion artistry, sustainability, and self-expression.<br>
+    And to make every customer feel seen, celebrated, and cherished.
+  </p>
 </div>
-<br><br>
 {% endblock main-content %}
