@@ -10,8 +10,6 @@ This project transforms a traditional offline jewelry store into a scalable, sec
 - **Backend**: Django, SQLite
 - **Frontend**: HTML, CSS (Bootstrap 5), Django Template Language
 - **Authentication**: Django Auth with email verification
-- **Payment**: Integrated with [SSLCommerz] (add link if applicable)
-- **Deployment**: (if deployed, mention platform like Vercel, Render, etc.)
 
 ---
 
