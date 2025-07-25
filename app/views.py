@@ -333,3 +333,5 @@ def search(request):
     return render(request, 'app/search.html', locals())
 
 
+def wishlist_view(request):
+    return render(request, 'app/wishlist.html')

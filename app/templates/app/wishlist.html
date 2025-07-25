@@ -1,0 +1,106 @@
+{% extends 'app/base.html' %} {% load static %} {% block title %}My Wishlist{% endblock %} {% block main-content %}
+<div class="container my-5">
+  <h3 class="mb-4 text-center">💖 My Wishlist</h3>
+
+  <div class="row">
+    <!-- Demo Product 1 -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <img
+          src="{% static 'app/images/product/watch.jpeg' %}"
+          class="card-img-top wishlist-img"
+          alt="Vintage Silver Watch"
+        />
+        <div class="card-body">
+          <h5 class="card-title">Vintage Silver Watch</h5>
+          <p class="card-text">Price: $120</p>
+          <p class="text-muted">
+            A timeless silver watch with classic Roman numerals and minimalist
+            charm.
+          </p>
+          <div class="d-flex justify-content-between mt-3">
+            <button class="btn btn-outline-dark btn-sm">View Product</button>
+            <button
+              class="btn btn-danger btn-sm"
+              onclick="removeFromWishlist('Vintage Silver Watch')"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo Product 2 -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <img
+          src="{% static 'app/images/product/ring.jpeg' %}"
+          class="card-img-top wishlist-img"
+          alt="Rose Gold Ring"
+        />
+        <div class="card-body">
+          <h5 class="card-title">Rose Gold Ring</h5>
+          <p class="card-text">Price: $85</p>
+          <p class="text-muted">
+            Delicately crafted rose gold ring with a graceful heart motif.
+          </p>
+          <div class="d-flex justify-content-between mt-3">
+            <button class="btn btn-outline-dark btn-sm">View Product</button>
+            <button
+              class="btn btn-danger btn-sm"
+              onclick="removeFromWishlist('Rose Gold Ring')"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo Product 3 -->
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm">
+        <img
+          src="{% static 'app/images/product/earings.jpeg' %}"
+          class="card-img-top wishlist-img"
+          alt="Elegant Earrings"
+        />
+        <div class="card-body">
+          <h5 class="card-title">Elegant Earrings</h5>
+          <p class="card-text">Price: $145</p>
+          <p class="text-muted">
+            Elegant drop earrings with a silver finish for timeless
+            sophistication.
+          </p>
+          <div class="d-flex justify-content-between mt-3">
+            <button class="btn btn-outline-dark btn-sm">View Product</button>
+            <button
+              class="btn btn-danger btn-sm"
+              onclick="removeFromWishlist('Elegant Earrings')"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Simulated Remove Button -->
+<script>
+  function removeFromWishlist(productName) {
+    alert("❌ Removed '" + productName + "' from wishlist (demo only).");
+  }
+</script>
+
+<!-- Uniform Image Styling -->
+<style>
+  .wishlist-img {
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+  }
+</style>
+{% endblock %}

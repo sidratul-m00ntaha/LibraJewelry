@@ -53,7 +53,7 @@ urlpatterns = [
     ), name="passwordchangedone"),
 
     path("logout/", CustomLogoutView.as_view(next_page="login"), name="logout"),
-
+    path('wishlist/', views.wishlist_view, name='wishlist'),
 
     # Password reset
     path("password-reset/", auth_view.PasswordResetView.as_view(

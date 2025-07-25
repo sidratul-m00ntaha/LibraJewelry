@@ -1,61 +1,111 @@
 {% extends 'app/base.html' %}
 {% load static %}
 
-{% block title %}Buy now{% endblock title %}
+{% block title %}Buy Now{% endblock %}
 
 {% block main-content %}
-{% if messages %}
-{% for msg in messages %}
-<div class="alert alert-danger" role="alert">
-    {{ msg }}
-</div>
-{% endfor %}
-{% endif %}
-<div class="row mt-5">
-    <div class="col-sm-6">
-        <h4> Order Summary</h4>
-        <hr>
-        {% for item in cart_items %}
-        <div class="card mb-2">
-            <div class="card-body">
-                <h5>Product: {{ item.product.title }}</h5>
-                <p>Quantity: {{ item.quantity }}</p>
-                <p class="fw-bold">Price: {{ item.product.discounted_price }}</p>
-            </div>
-        </div>
+<div class="container my-5">
+    <!-- Alerts -->
+    {% if messages %}
+        {% for msg in messages %}
+            <div class="alert alert-danger">{{ msg }}</div>
         {% endfor %}
-        <p class="fw-bold">Total Cost + $ 40 {{totalamount}}</p>
-        <small> Term and Condition: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</small>
-    </div>
-    <div class="col-sm-4 offset-sm-1">
-        <h4>Select shipping address</h4>
-        <hr>
-        <form method="post" id="myform">
-            {% csrf_token %}
-            {% for ad in add %}
-            <div class="card">
-                <div class="card-body">
-                    <h5>{{ ad.name }}</h5>
-                    <p> Mobile: {{ ad.mobile }}</p>
-                    <p>{{ad.locality}}, {{ad.city}}, {{ad.state}}, {{ad.zipcode}}</p>
-                    </div>
-                    <div class="form-check mt-2 mb-5">
-                        <input class="form-check-input" type="radio" name="custid" id="custadd{{forloop.counter}}" value="{{ad.id}}">
-                        <label class="form-check-label fw-bold" for="custadd{{forloop.counter}}">
+    {% endif %}
 
-                        Address:{{forloop.counter}} </label>
-                    </div>
-                    {% endfor %}
-                    <div class="form-check mb-3">
-                        <label for="totalamount" class="form-label">Total Amount</label>
-                        <input type="number" class="form-control" id="totalamount" value="{{ totalamount }}" readonly>
-                    </div>
-                    <div class="text-end">
-                        <button type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Continue</button>
-                        <button id="rzp-button" type="submit" class="btn btn-warning mt-3 px-5 fw-bold">Pay Now</button>
-                    </div>
-                    </form>
+    <div class="row">
+        <!-- 🛍️ Order Summary -->
+        <div class="col-md-6">
+            <h4 class="mb-3">Order Summary</h4>
+            <hr>
+            {% for item in cart_items %}
+            <div class="card mb-2 shadow-sm">
+                <div class="card-body">
+                    <h5>Product: {{ item.product.title }}</h5>
+                    <p>Quantity: {{ item.quantity }}</p>
+                    <p><strong>Price:</strong> ${{ item.product.discounted_price }}</p>
                 </div>
             </div>
+            {% endfor %}
+            <div class="mt-3">
+                <p><strong>Shipping Charge:</strong> $40</p>
+                <p><strong>Total Amount:</strong> ${{ totalamount }}</p>
+            </div>
         </div>
-    {% endblock main-content %}
+
+        <!-- 🏠 Shipping Address -->
+        <div class="col-md-6">
+            <h4 class="mb-3">Select Shipping Address</h4>
+            <hr>
+            <form id="checkout-form">
+                {% csrf_token %}
+                {% for ad in add %}
+                <div class="card mb-3 shipping-card" onclick="selectAddress('{{ forloop.counter }}')">
+                    <div class="card-body">
+                        <input type="radio" name="shipping" id="addr{{ forloop.counter }}" value="{{ forloop.counter }}" class="form-check-input d-inline-block me-2">
+                        <label for="addr{{ forloop.counter }}" class="form-check-label">
+                            <strong>{{ ad.name }}</strong><br>
+                            Mobile: {{ ad.mobile }}<br>
+                            {{ ad.locality }}, {{ ad.city }}, {{ ad.state }} - {{ ad.zipcode }}
+                        </label>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="text-end">
+                    <button type="button" id="pay-button" class="btn btn-success px-4 fw-bold">Pay Now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 💳 JavaScript: Simulated Payment -->
+<script>
+    function selectAddress(counter) {
+        document.querySelectorAll('.shipping-card').forEach(card => card.classList.remove('border-success'));
+        document.getElementById('addr' + counter).checked = true;
+        document.getElementById('addr' + counter).closest('.card').classList.add('border-success');
+    }
+
+    document.getElementById('pay-button').addEventListener('click', function () {
+        const selected = document.querySelector('input[name="shipping"]:checked');
+        if (!selected) {
+            alert("⚠️ Please select a shipping address.");
+            return;
+        }
+
+        // Build order summary
+        let items = "";
+        {% for item in cart_items %}
+        items += "• {{ item.product.title }} ({{ item.quantity }}) - ${{ item.product.discounted_price }}\n";
+        {% endfor %}
+
+        // Get address text
+        const label = document.querySelector('label[for="' + selected.id + '"]').innerText;
+
+        alert(
+            "✅ Payment Successful!\n\n📦 Order Details:\n" + items +
+            "\n\n🏠 Shipping To:\n" + label +
+            "\n\n💳 Total Paid: ${{ totalamount }} + $40 (Shipping)"
+        );
+    });
+</script>
+
+<!-- 🎨 Styling -->
+<style>
+    .card {
+        transition: border-color 0.3s ease;
+        cursor: pointer;
+    }
+    .card:hover {
+        border-color: #28a745;
+    }
+    .border-success {
+        border-color: #28a745 !important;
+        background-color: #f0fff5;
+    }
+    .form-check-input {
+        transform: scale(1.2);
+        margin-top: 5px;
+    }
+</style>
+{% endblock %}

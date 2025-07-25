@@ -43,3 +43,4 @@ class CustomerProfileForm(forms.ModelForm):
             'zipcode': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
+
