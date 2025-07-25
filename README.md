@@ -33,3 +33,29 @@ Follow these steps to run the project locally:
 ```bash
 git clone https://github.com/<your-username>/<your-repo-name>.git
 cd <your-repo-name>
+```
+### 2️⃣ Set Up a Virtual Environment
+```bash
+python -m venv venv
+source venv/bin/activate        # On Linux/Mac
+venv\Scripts\activate           # On Windows
+```
+### 3️⃣ Install Requirements
+```bash
+pip install -r requirements.txt
+```
+### 4️⃣ Run Migrations
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+### 5️⃣ Create Superuser (Optional)
+```bash
+python manage.py createsuperuser
+```
+### 6️⃣ Run the Development Server
+```bash
+python manage.py runserver
+```
+
+
